@@ -80,7 +80,7 @@ const ErpPage = () => {
 
       <motion.section
         ref={heroRef}
-        className="relative bg-cover bg-center h-screen flex items-center justify-center text-center z-10 overflow-hidden"
+        className="relative bg-cover bg-center h-[50vh] flex items-center justify-center text-center z-10 overflow-hidden"
         style={{
           backgroundImage: `url('https://img.freepik.com/free-vector/hand-drawn-flat-design-erp-illustration_23-2149379505.jpg?uid=R186472209&ga=GA1.1.455755995.1738954286&semt=ais_hybrid&w=740')`,
         }}

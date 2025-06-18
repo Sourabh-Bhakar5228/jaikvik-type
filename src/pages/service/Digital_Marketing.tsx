@@ -146,7 +146,7 @@ const Digital_Marketing = () => {
 
       <motion.section
         ref={heroRef}
-        className="relative bg-cover bg-center h-screen flex items-center justify-center text-center z-10 overflow-hidden"
+        className="relative bg-cover bg-center h-[50vh] flex items-center justify-center text-center z-10 overflow-hidden"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&auto=format&fit=crop&w=740&q=80')`,
         }}

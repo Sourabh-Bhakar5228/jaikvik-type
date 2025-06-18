@@ -5,6 +5,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // layouts
 import AppLayout from "../layouts/AppLayout";
+import JavaScript from "../pages/language_page/JavaScript";
+import Java from "../pages/language_page/Java";
+import JQuery from "../pages/language_page/jQuery";
+import Laravel from "../pages/language_page/Laravel";
+import MongoDB from "../pages/language_page/MongoDB";
+import NodeJS from "../pages/language_page/NodeJS";
+import Python from "../pages/language_page/Python";
+import ReactJS from "../pages/language_page/ReactJS";
+import SQL from "../pages/language_page/SQL";
+import Wordpress from "../pages/language_page/Wordpress";
 
 // pages
 const Home = lazy(() => import("../pages/home/Home"));
@@ -106,43 +116,43 @@ const router = createBrowserRouter([
       },
       {
         path: "javascript",
-        // element: ,
+        element: <JavaScript />,
       },
       {
         path: "java",
-        // element: < />,
+        element: <Java />,
       },
       {
         path: "jquery",
-        // element: < />,
+        element: <JQuery />,
       },
       {
         path: "laravel",
-        // element: < />,
+        element: <Laravel />,
       },
       {
         path: "mongodb",
-        // element: < />,
+        element: <MongoDB />,
       },
       {
         path: "node-js",
-        // element: < />,
+        element: <NodeJS />,
       },
       {
         path: "python",
-        // element: < />,
+        element: <Python />,
       },
       {
         path: "react-js",
-        // element: < />,
+        element: <ReactJS />,
       },
       {
         path: "sql",
-        // element: < />,
+        element: <SQL />,
       },
       {
         path: "wordpress",
-        // element: < />,
+        element: <Wordpress />,
       },
     ],
   },
