@@ -17,7 +17,6 @@ const OurServices = () => {
       if (value) {
         swiperRef.current.autoplay.stop();
       } else {
-        // Only resume if not manually interacting
         if (!swiperRef.current.autoplay.paused) {
           swiperRef.current.autoplay.start();
         }
@@ -46,22 +45,34 @@ const OurServices = () => {
           <Swiper
             modules={[Navigation, Autoplay]}
             spaceBetween={20}
-            slidesPerView={4.5}
+            slidesPerView="auto"
             breakpoints={{
               320: {
-                slidesPerView: 1.2,
+                slidesPerView: 1.1,
                 spaceBetween: 10,
               },
+              400: {
+                slidesPerView: 1,
+                spaceBetween: 12,
+              },
               640: {
-                slidesPerView: 2.3,
+                slidesPerView: 2,
                 spaceBetween: 15,
               },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 16,
+              },
               1024: {
-                slidesPerView: 3.5,
-                spaceBetween: 20,
+                slidesPerView: 3,
+                spaceBetween: 18,
               },
               1280: {
-                slidesPerView: 4.5,
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
+              1536: {
+                slidesPerView: 4,
                 spaceBetween: 20,
               },
             }}
@@ -73,7 +84,7 @@ const OurServices = () => {
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
-              pauseOnMouseEnter: true, // Additional safety
+              pauseOnMouseEnter: true,
             }}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;

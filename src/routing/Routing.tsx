@@ -1,7 +1,9 @@
 import { lazy } from "react";
-
-// router
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  ScrollRestoration,
+} from "react-router-dom";
 
 // layouts
 import AppLayout from "../layouts/AppLayout";
@@ -15,6 +17,8 @@ import Python from "../pages/language_page/Python";
 import ReactJS from "../pages/language_page/ReactJS";
 import SQL from "../pages/language_page/SQL";
 import Wordpress from "../pages/language_page/Wordpress";
+import PrivacyPolicy from "../pages/service/PrivacyPolicy";
+import Portfolio from "../pages/service/Portfolio";
 
 // pages
 const Home = lazy(() => import("../pages/home/Home"));
@@ -22,7 +26,6 @@ const About = lazy(() => import("../pages/about/About"));
 const Blogs = lazy(() => import("../pages/blogs/Blogs"));
 const ContactUs = lazy(() => import("../pages/contact/ContactUs"));
 const Careers = lazy(() => import("../pages/careers/Careers"));
-// const Service = lazy(() => import("../pages/service/Service"));
 const CRMPage = lazy(() => import("../pages/service/CRMPage"));
 const Mobile = lazy(() => import("../pages/service/Mobile_Application"));
 const ERPPage = lazy(() => import("../pages/service/ERPPage"));
@@ -44,7 +47,12 @@ const FilmProduction = lazy(() => import("../pages/service/Film_Production"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <>
+        <ScrollRestoration />
+        <AppLayout />
+      </>
+    ),
     children: [
       {
         path: "",
@@ -154,16 +162,20 @@ const router = createBrowserRouter([
         path: "wordpress",
         element: <Wordpress />,
       },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "portfolio",
+        element: <Portfolio />,
+      },
     ],
   },
 ]);
 
 const Routing = () => {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default Routing;

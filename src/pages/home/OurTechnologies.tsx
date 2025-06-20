@@ -200,7 +200,7 @@ const TechnologySlider: React.FC = () => {
       <div className="swiper bhakar-technologia-slider">
         <div className="bhakar-technologia-heading">
           <h2>
-            <Link to="#">
+            <Link to="/">
               Our Technology <span></span>
             </Link>
           </h2>
@@ -211,7 +211,11 @@ const TechnologySlider: React.FC = () => {
           slidesPerView={1}
           spaceBetween={20}
           loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           pagination={{ el: ".bhakar-technologia-pagination", clickable: true }}
           navigation={{
             nextEl: ".bhakar-technologia-button-next",

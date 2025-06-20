@@ -16,6 +16,7 @@ import OurServices from "./OurSerives";
 import CorporateVideosSection from "./CorporateVideosSection";
 import OurTechnologies from "./OurTechnologies";
 import MobileAppSection from "./MobileAppSection";
+import TeamVideoSlider from "./TeamVideoSlider";
 
 const Home: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
       <OurTestimonials />
       <BlogsSection />
       <OurServices />
+      <TeamVideoSlider />
       <ReviewsSection />
       <OurClients />
       <EnquireSection />

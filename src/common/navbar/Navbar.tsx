@@ -26,7 +26,9 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const windowTop = window.scrollY + 1;
-      setIsSticky(windowTop > 250);
+      // For mobile, we'll make it sticky immediately since the header is smaller
+      const threshold = window.innerWidth < 768 ? 0 : 250;
+      setIsSticky(windowTop > threshold);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -227,6 +229,18 @@ const Navbar: React.FC = () => {
             transform: translateY(-50%) rotate(180deg);
           }
 
+          /* Mobile Sticky Header */
+          .mobile-sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 990;
+            transition: all 0.3s ease;
+            animation: ${isSticky ? "sticky 0.3s ease" : "none"};
+            box-shadow: ${isSticky ? "0 4px 12px rgba(0, 0, 0, 0.15)" : "none"};
+            background: ${isSticky ? "rgba(0, 0, 0, 0.95)" : "black"};
+            backdrop-filter: ${isSticky ? "blur(10px)" : "none"};
+          }
+
           @media (max-width: 768px) {
             .offcanvas {
               width: 280px !important;
@@ -260,13 +274,14 @@ const Navbar: React.FC = () => {
         <NavLayerTop />
       </div>
 
-      {/* Mobile Header */}
-      <div className="block md:hidden bg-black text-white py-2 px-4">
-        <div className="flex justify-between items-center">
+      {/* Mobile Header - Now Sticky */}
+      <div className={`block md:hidden mobile-sticky-header`}>
+        <div className="flex justify-between items-center py-2 px-4">
           <Link to="/" className="w-24 h-8">
             <img
               src="https://jaikvik.in/lab/new-post-video/img/logo/logo-1.png"
               alt="logo"
+              className="h-full object-contain"
             />
           </Link>
           <div className="flex items-center space-x-3">

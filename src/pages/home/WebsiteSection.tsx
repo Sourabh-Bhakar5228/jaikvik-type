@@ -13,13 +13,11 @@ const WebsiteSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoSliding, setIsAutoSliding] = useState(true);
 
-  // When swiper changes slide, update active index and start scroll again
   const onSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.realIndex);
     setIsAutoSliding(true);
   };
 
-  // Called from WebsiteCard after scroll transition end
   const handleScrollComplete = () => {
     if (isAutoSliding) {
       let timer = setInterval(() => {
@@ -29,7 +27,6 @@ const WebsiteSection = () => {
     }
   };
 
-  // Stop autoplay and scroll on arrow click
   const handleArrowClick = (direction: "prev" | "next") => {
     setIsAutoSliding(false);
     if (direction === "prev") swiperRef.current?.slidePrev();
@@ -37,7 +34,7 @@ const WebsiteSection = () => {
   };
 
   return (
-    <div className="overflow-hidden my-4 min-h-[300px] relative">
+    <div className="overflow-hidden my-4 h-[250px] md:h-[400px] relative px-4 md:px-6 lg:px-8">
       <div className="websiteHeading mb-4">
         <h2 className="uppercase text-gray-200 text-xl inline-block relative">
           <a href="#" className="flex font-bold items-center gap-1.5 ml-2">
@@ -49,7 +46,29 @@ const WebsiteSection = () => {
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={15}
-          slidesPerView={2.5}
+          slidesPerView="auto"
+          breakpoints={{
+            320: {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 1.5,
+              spaceBetween: 15,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 15,
+            },
+            1024: {
+              slidesPerView: 2.5,
+              spaceBetween: 20,
+            },
+            1280: {
+              slidesPerView: 2.8,
+              spaceBetween: 20,
+            },
+          }}
           loop
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
@@ -61,10 +80,10 @@ const WebsiteSection = () => {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
-          autoplay={false} // we control slide manually after scroll
+          autoplay={false}
         >
           {websites.map((website, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="!h-auto">
               <WebsiteCard
                 index={index}
                 website={website}
@@ -75,9 +94,11 @@ const WebsiteSection = () => {
           ))}
         </Swiper>
 
-        {/* Arrows */}
-        <ArrowLeft onClick={() => handleArrowClick("prev")} />
-        <ArrowRight onClick={() => handleArrowClick("next")} />
+        {/* Arrows - Hidden on mobile, visible on tablet and up */}
+        <div className=" sm:block">
+          <ArrowLeft onClick={() => handleArrowClick("prev")} />
+          <ArrowRight onClick={() => handleArrowClick("next")} />
+        </div>
       </div>
     </div>
   );

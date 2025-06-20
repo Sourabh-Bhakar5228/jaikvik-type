@@ -83,7 +83,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-2 mt-2">
                   <Link
-                    to="/"
+                    to="/portfolio"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Portfolio
@@ -91,7 +91,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-2 mt-2">
                   <Link
-                    to="/"
+                    to="/blogs"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Our Blogs
@@ -99,7 +99,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-2 mt-2">
                   <Link
-                    to="/"
+                    to="/careers"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Career
@@ -107,7 +107,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-2 mt-2">
                   <Link
-                    to="/"
+                    to="/privacy-policy"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Privacy Policy
@@ -115,7 +115,7 @@ const Footer = () => {
                 </li>
                 <li className="flex items-center gap-2 mt-2">
                   <Link
-                    to="/"
+                    to="/contact-us"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Contact Us
@@ -131,52 +131,52 @@ const Footer = () => {
               </h3>
               <ul className="list-none p-0 m-0 text-[16px]">
                 <li className="flex items-center gap-2 mt-2">
-                  <a
-                    href="digital-marketing.php"
+                  <Link
+                    to="/digital-marketing"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Digital Marketing
-                  </a>
+                  </Link>
                 </li>
                 <li className="flex items-center gap-2 mt-2">
-                  <a
-                    href="mobile-application.php"
+                  <Link
+                    to="/coustmised-software"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Software Development
-                  </a>
+                  </Link>
                 </li>
                 <li className="flex items-center gap-2 mt-2">
-                  <a
-                    href="Film_production.php"
+                  <Link
+                    to="/film-production"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Film Making
-                  </a>
+                  </Link>
                 </li>
                 <li className="flex items-center gap-2 mt-2">
-                  <a
-                    href="SEO-service.php"
+                  <Link
+                    to="/seo-services"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     SEO (Search Engine Optimization)
-                  </a>
+                  </Link>
                 </li>
                 <li className="flex items-center gap-2 mt-2">
-                  <a
-                    href=""
+                  <Link
+                    to="/web-development"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     E-Commerce
-                  </a>
+                  </Link>
                 </li>
                 <li className="flex items-center gap-2 mt-2">
-                  <a
-                    href="website-development-page.php"
+                  <Link
+                    to="/web-development"
                     className="text-main-gray hover:underline transition-all duration-300"
                   >
                     Website Development
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

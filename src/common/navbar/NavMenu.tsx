@@ -11,13 +11,16 @@ const NavMenu: React.FC<navmenuInterface> = ({
   const items: MenuProps["items"] = menu.map((item, index) => ({
     key: index,
     label: (
-      <Link to={item.href as string} className="container-img relative block">
+      <Link
+        to={item.href as string}
+        className="container-img relative block group overflow-hidden"
+      >
         <img
           src={item.img}
           alt={item.text}
-          className="w-full rounded-md shadow-lg"
+          className="w-full rounded-md shadow-lg group-hover:scale-105 transition-transform duration-300"
         />
-        <div className="image-text absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/60 text-white font-medium text-sm text-center px-3 py-2 w-4/5">
+        <div className="image-text absolute top-0 left-0 right-0  text-white font-medium text-sm px-1 py-1 text-center transition-all duration-300">
           {item.text}
         </div>
       </Link>

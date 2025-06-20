@@ -37,23 +37,43 @@ const MobileAppShowcaseSection = () => {
     },
   ];
 
-  // App Screen Images
-  const appScreens = [
+  // First set of app screens (for first phone)
+  const appScreens1 = [
     {
       id: 1,
-      url: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=800&fit=crop",
+      url: "https://img.freepik.com/premium-vector/exercise-tracker-smartphone-interface-vector-template-mobile-app-page-design-layout-useful-features-sport-body-measurement-smartphone-screen-flat-ui-application-phone-display_106317-4840.jpg",
     },
     {
       id: 2,
-      url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=800&fit=crop",
+      url: "https://plus.unsplash.com/premium_photo-1683288706157-9913483dffc8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fG1vYmlsZSUyMCUyMGRhc2hib2FyZHxlbnwwfHwwfHx8MA%3D%3D",
     },
     {
       id: 3,
-      url: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=800&fit=crop",
+      url: "https://img.freepik.com/premium-vector/network-monitoring-smartphone-interface-vector-template_106317-5089.jpg",
     },
     {
       id: 4,
-      url: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=800&fit=crop",
+      url: "https://img.freepik.com/premium-vector/expenses-dashboard-smartphone-interface-vector-template-mobile-app-page-white-design-layout-receipt-tracker-diagram-screen-flat-ui-financial-spending-application-money-tracking-phone-display_106317-13845.jpg",
+    },
+  ];
+
+  // Second set of app screens (for second phone)
+  const appScreens2 = [
+    {
+      id: 5,
+      url: "https://img.freepik.com/free-vector/gradient-dark-mode-app-template_23-2150518845.jpg?uid=R186472209&ga=GA1.1.455755995.1738954286&semt=ais_hybrid&w=740",
+    },
+    {
+      id: 6,
+      url: "https://img.freepik.com/free-vector/set-mobile-screens-with-ui-applications-including-music-player-photos_1284-16061.jpg?uid=R186472209&ga=GA1.1.455755995.1738954286&semt=ais_hybrid&w=740",
+    },
+    {
+      id: 7,
+      url: "https://img.freepik.com/free-vector/gradient-ui-ux-elements_23-2149057417.jpg?uid=R186472209&ga=GA1.1.455755995.1738954286&semt=ais_hybrid&w=740",
+    },
+    {
+      id: 8,
+      url: "https://img.freepik.com/premium-vector/online-banking-unique-neumorphic-design-kit-app_9209-3274.jpg?uid=R186472209&ga=GA1.1.455755995.1738954286&semt=ais_hybrid&w=740",
     },
   ];
 
@@ -77,7 +97,7 @@ const MobileAppShowcaseSection = () => {
 
       scrollPosition += speed;
       const maxScroll =
-        appScreens.length * (isMobile ? 300 : 400) - (isMobile ? 300 : 400);
+        appScreens1.length * (isMobile ? 300 : 400) - (isMobile ? 300 : 400);
 
       if (scrollPosition >= maxScroll) {
         scrollPosition = 0;
@@ -91,7 +111,7 @@ const MobileAppShowcaseSection = () => {
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [isHovering, appScreens.length, isMobile]);
+  }, [isHovering, isMobile]);
 
   // Auto-scroll with speed control (reverse direction) - only on desktop
   useEffect(() => {
@@ -104,7 +124,7 @@ const MobileAppShowcaseSection = () => {
       if (!scrollRefReverse.current) return;
 
       scrollPosition -= speed;
-      const maxScroll = appScreens.length * 400 - 400;
+      const maxScroll = appScreens2.length * 400 - 400;
 
       if (Math.abs(scrollPosition) >= maxScroll) {
         scrollPosition = 0;
@@ -121,7 +141,7 @@ const MobileAppShowcaseSection = () => {
       if (animationRefReverse.current)
         cancelAnimationFrame(animationRefReverse.current);
     };
-  }, [isHovering, appScreens.length, isMobile]);
+  }, [isHovering, isMobile]);
 
   // Feature rotation
   useEffect(() => {
@@ -141,7 +161,7 @@ const MobileAppShowcaseSection = () => {
           <div className="w-full lg:w-1/2 lg:pr-12 z-10 order-2 lg:order-1 mt-8 lg:mt-0">
             <div className="relative h-full flex flex-col justify-center">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 text-center lg:text-left">
-                Powerful Features, <br />
+                MOBILE APPLICATION , <br />
                 <span
                   className={`bg-gradient-to-r ${currentFeature.gradient} bg-clip-text text-transparent`}
                 >
@@ -237,7 +257,7 @@ const MobileAppShowcaseSection = () => {
                       ref={scrollRef}
                       className="absolute inset-0 transition-transform duration-1000 ease-out"
                     >
-                      {[...appScreens, ...appScreens].map((screen, i) => (
+                      {[...appScreens1, ...appScreens1].map((screen, i) => (
                         <div
                           key={`${screen.id}-${i}`}
                           className="absolute w-full h-full transition-opacity duration-500"
@@ -273,7 +293,7 @@ const MobileAppShowcaseSection = () => {
                         ref={scrollRefReverse}
                         className="absolute inset-0 transition-transform duration-1000 ease-out"
                       >
-                        {[...appScreens, ...appScreens].map((screen, i) => (
+                        {[...appScreens2, ...appScreens2].map((screen, i) => (
                           <div
                             key={`reverse-${screen.id}-${i}`}
                             className="absolute w-full h-full transition-opacity duration-500"

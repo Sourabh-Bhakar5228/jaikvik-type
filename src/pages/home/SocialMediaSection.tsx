@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -9,19 +9,27 @@ import reels from "../../configs/all-reels";
 
 const SocialMediaSection = () => {
   const swiperRef = useRef<SwiperType | null>(null);
+  const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
 
   const handleVideoHover = (value: boolean) => {
-    if (swiperRef.current) {
+    if (!swiperRef.current) return;
+    setIsAutoplayPaused(value);
+
+    requestAnimationFrame(() => {
       if (value) {
-        swiperRef.current.autoplay.stop(); // Pause autoplay on hover
+        swiperRef.current?.autoplay.stop();
       } else {
-        swiperRef.current.autoplay.start(); // Resume autoplay when mouse leaves
+        setTimeout(() => {
+          if (swiperRef.current && !isAutoplayPaused) {
+            swiperRef.current.autoplay.start();
+          }
+        }, 100);
       }
-    }
+    });
   };
 
   return (
-    <div className="overflow-hidden h-auto my-4 ">
+    <div className="overflow-hidden h-auto my-4">
       <div className="websiteHeading mb-4">
         <h2 className="uppercase text-gray-200 text-xl inline-block relative">
           <a href="#" className="flex font-bold items-center gap-1.5 ml-2">
@@ -34,6 +42,38 @@ const SocialMediaSection = () => {
           modules={[Navigation, Autoplay]}
           spaceBetween={10}
           slidesPerView={4.5}
+          breakpoints={{
+            // when window width is >= 320px
+            320: {
+              slidesPerView: 1.2,
+              spaceBetween: 10,
+            },
+            // when window width is >= 480px
+            480: {
+              slidesPerView: 1.5,
+              spaceBetween: 10,
+            },
+            // when window width is >= 640px
+            640: {
+              slidesPerView: 2.5,
+              spaceBetween: 10,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            // when window width is >= 1024px
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+            // when window width is >= 1280px
+            1280: {
+              slidesPerView: 4.5,
+              spaceBetween: 10,
+            },
+          }}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
@@ -42,18 +82,21 @@ const SocialMediaSection = () => {
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+            waitForTransition: true,
           }}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
+          speed={500}
           className="mySwiper !overflow-visible"
         >
-          {reels.map((item, index) => (
+          {reels.map((reel, index) => (
             <SwiperSlide key={index}>
               <ReelVideoCard
-                src={item as string}
+                src={reel.video}
+                poster={reel.poster}
                 onHover={handleVideoHover}
-                poster="https://img.freepik.com/free-vector/silhouette-crowd-people-with-flags-banners-manifestation_23-2148009667.jpg?uid=R186472209&ga=GA1.1.455755995.1738954286&semt=ais_hybrid&w=740"
               />
             </SwiperSlide>
           ))}

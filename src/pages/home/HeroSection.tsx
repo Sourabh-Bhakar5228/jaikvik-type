@@ -6,39 +6,25 @@ const HeroSection: React.FC = () => {
   const [showMuteButton, setShowMuteButton] = useState<boolean>(false);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const muteButtonTimeout = useRef<NodeJS.Timeout>();
+  const isInitialized = useRef<boolean>(false);
 
-  // Initialize video and handle state changes
+  // Initialize video only once
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || isInitialized.current) return;
 
-    const handleVideoPlayback = async () => {
+    const initializeVideo = async () => {
       try {
-        // Always start muted for autoplay to work
         video.muted = true;
-        setIsMuted(true);
-
         await video.play();
-
-        // Unmute if hovering (with error fallback)
-        if (isHovering) {
-          try {
-            video.muted = false;
-            setIsMuted(false);
-            await video.play();
-            showTemporaryMuteButton();
-          } catch (err) {
-            console.log("Couldn't unmute:", err);
-            video.muted = true;
-            setIsMuted(true);
-          }
-        }
+        isInitialized.current = true;
+        showTemporaryMuteButton();
       } catch (err) {
-        console.error("Video playback error:", err);
+        console.error("Video initialization error:", err);
       }
     };
 
-    handleVideoPlayback();
+    initializeVideo();
 
     return () => {
       if (videoRef.current) {
@@ -46,6 +32,21 @@ const HeroSection: React.FC = () => {
       }
       clearTimeout(muteButtonTimeout.current);
     };
+  }, []);
+
+  // Handle hover changes
+  useEffect(() => {
+    if (!videoRef.current || !isInitialized.current) return;
+
+    try {
+      videoRef.current.muted = !isHovering;
+      setIsMuted(!isHovering);
+      if (isHovering) {
+        showTemporaryMuteButton();
+      }
+    } catch (err) {
+      console.log("Hover state change error:", err);
+    }
   }, [isHovering]);
 
   const showTemporaryMuteButton = () => {
@@ -63,13 +64,10 @@ const HeroSection: React.FC = () => {
   const handleMouseLeave = () => {
     setIsHovering(false);
     setShowMuteButton(false);
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      setIsMuted(true);
-    }
   };
 
-  const toggleMute = () => {
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
 
@@ -115,7 +113,7 @@ const HeroSection: React.FC = () => {
               }`}
               onClick={(e) => {
                 e.stopPropagation();
-                toggleMute();
+                toggleMute(e);
               }}
             >
               {isMuted ? (
